@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cashless Africa — Votre argent sans frontières (Style Cash App)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- =======================================================================
+       FLOATING PILL NAVBAR (PURE CASH APP AESTHETIC)
+       ======================================================================= -->
+  <div class="cash-nav-wrapper">
+    <header class="cash-nav">
+      <div class="cash-logo" onclick="switchView('landing')">
+        <span class="cash-logo-badge">₵</span>
+        <span>cashless</span>
+      </div>
+
+      <nav class="cash-nav-center">
+        <button class="cash-tab-btn active" data-nav="landing" onclick="switchView('landing')">
+          Accueil &amp; Produits
+        </button>
+        <button class="cash-tab-btn" data-nav="tutos" onclick="switchView('tutos')">
+          Centre de Tutos
+        </button>
+        <button class="cash-tab-btn" data-nav="blog" onclick="switchView('blog')">
+          Cash'astuces (Blog)
+        </button>
+      </nav>
+
+      <div class="cash-nav-right">
+        <button class="lang-pill" id="lang-toggle-btn" onclick="toggleLanguage()">🇧🇯 FR</button>
+        <button class="btn-neon" onclick="openQrModal()">
+          <span id="nav-dl-label">Télécharger l'app</span>
+          <span>↗</span>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- =======================================================================
+       PILIER 1 : LANDING PAGE — FULL-SCREEN COLOR BLOCKS (CASH APP STYLE)
+       ======================================================================= -->
+  <main id="view-landing" class="view-section active">
+
+    <!-- BLOCK 1 : VERT ÉLECTRIQUE PLEIN ÉCRAN (#00E013) -->
+    <section class="cash-hero">
+      <div class="hero-container">
+        <!-- Gauche : Punchline monumentale + Boutons Stores noirs -->
+        <div>
+          <div class="hero-kicker">
+            <span>⚡ MONNAIE ÉLECTRONIQUE AGRÉÉE • ID MONEY SA</span>
+          </div>
+
+          <h1 class="display-giant" id="hero-main-title">
+            VOTRE ARGENT.<br/>
+            SANS FRONTIÈRES.<br/>
+            ZÉRO FRAIS.
+          </h1>
+
+          <p class="hero-lead" id="hero-main-lead">
+            Gérez vos FCFA, créez vos cartes virtuelles VISA &amp; Mastercard en USD en 2 minutes et transférez partout en Afrique et dans la diaspora à 0 F.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://apps.apple.com/fr/app/cashless-africa/id6758164587" target="_blank" rel="noopener" class="btn-black">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <span>App Store</span>
+            </a>
+
+            <a href="https://play.google.com/store/apps/details?id=com.cashlessapp.africa" target="_blank" rel="noopener" class="btn-black">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+              <span>Google Play</span>
+            </a>
+
+            <button class="btn-white" onclick="switchView('tutos','carte-usd')">
+              <span>Voir comment ça marche →</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Droite : Smartphone Noir Flottant avec Simulateur Live intégré (Cash App Keypad style) -->
+        <div class="cash-phone-stage">
+          <div class="cash-phone-chassis">
+            <div class="cash-phone-notch"></div>
+            <div class="cash-phone-screen">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;color:#8E9890;font-weight:700;">
+                <span>SIMULATEUR TEMPS RÉEL</span>
+                <span style="color:#00E013;">● LIVE</span>
+              </div>
+
+              <div class="phone-mode-pills">
+                <button class="phone-mode-pill active" onclick="setPhoneTab('convert', this)">Devises &amp; Envoi</button>
+                <button class="phone-mode-pill" onclick="setPhoneTab('card', this)">Recharge Carte USD</button>
+              </div>
+
+              <div style="font-size:11px;color:#8E9890;text-align:center;font-weight:700;">VOUS ENVOYEZ EN FCFA (XOF)</div>
+              <div class="cash-num-input-wrap">
+                <input type="number" id="sim-xof-input" class="cash-big-input" value="10000" step="1000" min="500" oninput="updateSimulator()" />
+                <div style="display:flex;justify-content:center;gap:6px;margin-top:8px;">
+                  <button onclick="setPresetXof(10000,'NGN')" style="background:#1A201D;color:#fff;border:1px solid #2A322E;border-radius:99px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;">10 000 F → NGN</button>
+                  <button onclick="setPresetXof(15000,'USD')" style="background:#1A201D;color:#fff;border:1px solid #2A322E;border-radius:99px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;">15 000 F → USD</button>
+                  <button onclick="setPresetXof(50000,'USD')" style="background:#1A201D;color:#fff;border:1px solid #2A322E;border-radius:99px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;">50 000 F</button>
+                </div>
+              </div>
+
+              <div class="cash-converted-box">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:11px;color:#9CA3AF;font-weight:700;">VOUS RECEVEZ NET</span>
+                  <select id="sim-target-curr" onchange="updateSimulator()" style="background:#000;color:#00E013;border:1px solid #00E013;border-radius:99px;padding:4px 10px;font-size:11.5px;font-weight:800;cursor:pointer;outline:none;">
+                    <option value="USD" selected>🇺🇸 USD (Dollar)</option>
+                    <option value="NGN">🇳🇬 NGN (Naira)</option>
+                    <option value="EUR">🇪🇺 EUR (Euro)</option>
+                  </select>
+                </div>
+                <div id="sim-result-text" style="font-family:var(--font-display);font-size:34px;font-weight:800;color:#00E013;letter-spacing:-0.03em;">
+                  $ 16,26
+                </div>
+                <div id="sim-rate-pill" style="font-family:var(--font-mono);font-size:10.5px;color:#9CA3AF;margin-top:6px;">
+                  1 USD = 615 FCFA • 0 FCFA • Instantané
+                </div>
+              </div>
+
+              <button class="btn-neon" style="width:100%;justify-content:center;padding:14px;font-size:14px;margin-top:8px;" onclick="openQrModal()">
+                Envoyer / Créer ma carte →
+              </button>
+            </div>
+          </div>
+
+          <!-- Dock QR Code flottant en bas à gauche du téléphone (Signature Cash App) -->
+          <div class="floating-qr-dock" onclick="openQrModal()">
+            <div style="width:42px;height:42px;background:#000;color:#00E013;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;">
+              ▣
+            </div>
+            <div>
+              <div style="font-size:12.5px;font-weight:900;">SCANNER LE QR</div>
+              <div style="font-size:11px;color:#4B5563;font-weight:600;">Télécharger sur iOS &amp; Android</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barre de confiance & Partenaires intégrée au pied du Hero Vert -->
+      <div class="hero-bottom-bar">
+        <div style="font-weight:800;font-size:14px;">
+          🔒 FONDS SÉCURISÉS • CHIFFREMENT 256-BIT • +8 058 COMPTES ACTIFS
+        </div>
+        <div class="partner-pills">
+          <span class="partner-pill"><img src="assets/mtn.png" alt="MTN" /> MTN MoMo</span>
+          <span class="partner-pill"><img src="assets/moov.png" alt="Moov" /> Moov Money</span>
+          <span class="partner-pill"><img src="assets/celltis.png" alt="Celtiis" /> Celtiis Cash</span>
+          <span class="partner-pill"><img src="assets/idmoney.png" alt="ID Money" /> ID Money SA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 2 : NOIR PROFOND — LA CARTE VIRTUELLE USD (STYLE "CASH CARD") -->
+    <section class="block-dark">
+      <div class="block-container split-showcase">
+        <div>
+          <span class="section-tag-neon">01 / CARTES VIRTUELLES &amp; PHYSIQUES USD</span>
+          <h2 class="display-section">
+            PAYEZ PARTOUT.<br/>
+            <span style="color:var(--cash-green-bright);">SANS BLOCAGE.</span>
+          </h2>
+          <p style="font-size:18px;color:#A1A8A3;line-height:1.6;max-width:520px;">
+            Créez un nombre illimité de cartes VISA &amp; Mastercard en Dollars USD directement depuis votre téléphone. Rechargez par Mobile Money à <strong>0 F de frais</strong> et payez vos publicités ou vos fournisseurs mondiaux.
+          </p>
+
+          <div class="merchant-pills">
+            <span class="merchant-pill">📣 Facebook &amp; TikTok Ads</span>
+            <span class="merchant-pill">📦 Alibaba &amp; Amazon</span>
+            <span class="merchant-pill">🛍️ Shein &amp; AliExpress</span>
+            <span class="merchant-pill">🎬 Netflix, Spotify &amp; ChatGPT</span>
+          </div>
+
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <button class="btn-neon" style="padding:16px 28px;font-size:15px;" onclick="openQrModal()">
+              Créer ma carte USD (3 000 F) →
+            </button>
+            <button class="btn-white" onclick="switchView('tutos','carte-usd')">
+              Tuto illustré Carte USD
+            </button>
+          </div>
+        </div>
+
+        <!-- Customiseur de carte 3D (Néon / Obsidian / Chrome) -->
+        <div class="cash-card-stage">
+          <div id="cash-3d-card" class="physical-card-3d skin-neon">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-0.04em;">cashless</span>
+              <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;border:1.5px solid currentColor;">
+                USD VIRTUAL
+              </span>
+            </div>
+
+            <div>
+              <div style="font-family:var(--font-mono);font-size:21px;font-weight:700;letter-spacing:2px;margin-bottom:14px;">
+                4580 •••• •••• 9214
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--font-mono);font-size:12px;font-weight:700;">
+                <div>
+                  <div style="opacity:0.65;font-size:10px;">TITULAIRE</div>
+                  <div>KOFFI MENSAH</div>
+                </div>
+                <div>
+                  <div style="opacity:0.65;font-size:10px;">ENTRETIEN</div>
+                  <div>0 FCFA / MOIS</div>
+                </div>
+                <div style="font-family:var(--font-display);font-size:22px;font-weight:800;">VISA</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-skin-switcher">
+            <button class="skin-btn active" onclick="setCardSkin('neon', this)">⚡ Neon Green</button>
+            <button class="skin-btn" onclick="setCardSkin('obsidian', this)">🖤 Obsidian Black</button>
+            <button class="skin-btn" onclick="setCardSkin('chrome', this)">💿 Metal Chrome</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 3 : BLANC PUR — LES 4 PILIERS PRODUIT + DÉMARRAGE EN 3 MINUTES -->
+    <section class="block-light">
+      <div class="block-container">
+        <div style="max-width:780px;">
+          <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;background:#000;color:#00E013;padding:6px 14px;border-radius:99px;text-transform:uppercase;">
+            02 / L'APPLICATION TOUT-EN-UN
+          </span>
+          <h2 class="display-section" style="margin-top:18px;">
+            ENVOYEZ. CONVERTISSEZ.<br/>CONTRÔLEZ CHAQUE FRANC.
+          </h2>
+        </div>
+
+        <div class="cash-bento">
+          <!-- Pilier Transfert 0 F interactif -->
+          <div class="cb-card cb-black cb-span-7">
+            <div>
+              <span style="font-family:var(--font-mono);font-size:12px;color:#00E013;font-weight:700;">TRANSFERTS INSTANTANÉS</span>
+              <h3 class="cb-title" style="margin-top:10px;">ENVOYEZ À VOS PROCHES À 0 F DE FRAIS.</h3>
+              <p style="color:#A1A8A3;font-size:16px;max-width:460px;">
+                Au Bénin, au Sénégal, en Côte d’Ivoire, au Togo ou dans la diaspora : transférez instantanément entre comptes Cashless sans aucune commission.
+              </p>
+            </div>
+
+            <div style="background:#141816;border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:22px;margin-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+              <div style="display:flex;align-items:center;gap:16px;">
+                <button onclick="changeP2p(-5000)" style="width:44px;height:44px;border-radius:50%;border:none;background:#262C29;color:#fff;font-size:22px;font-weight:800;cursor:pointer;">−</button>
+                <div>
+                  <span id="p2p-live-amount" style="font-family:var(--font-display);font-size:36px;font-weight:800;color:#00E013;">10 000</span>
+                  <span style="font-weight:800;color:#9CA3AF;"> FCFA</span>
+                  <div style="font-size:12px;color:#9CA3AF;">Frais Cashless : <strong style="color:#fff;">0 FCFA</strong></div>
+                </div>
+                <button onclick="changeP2p(5000)" style="width:44px;height:44px;border-radius:50%;border:none;background:#00E013;color:#000;font-size:22px;font-weight:800;cursor:pointer;">+</button>
+              </div>
+              <button class="btn-neon" onclick="openQrModal()">Envoyer en 1 clic →</button>
+            </div>
+          </div>
+
+          <!-- Pilier Multi-Devises -->
+          <div class="cb-card cb-green cb-span-5">
+            <div>
+              <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;">MULTI-DEVISES TEMPS RÉEL</span>
+              <h3 class="cb-title" style="margin-top:10px;">FCFA ↔ USD, NAIRA &amp; EURO.</h3>
+              <p style="font-size:15.5px;font-weight:600;opacity:0.85;">
+                Convertissez vos Francs CFA en Dollars ou en Naira (NGN) au meilleur taux pour régler vos fournisseurs à Lagos, Dubaï ou Guangzhou.
+              </p>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px;">
+              <div style="background:#000;color:#fff;padding:14px 18px;border-radius:16px;display:flex;justify-content:space-between;font-weight:800;">
+                <span>🇧🇯 Franc CFA (XOF)</span>
+                <span style="color:#00E013;">780 000 F</span>
+              </div>
+              <div style="background:#000;color:#fff;padding:14px 18px;border-radius:16px;display:flex;justify-content:space-between;font-weight:800;">
+                <span>🇺🇸 Dollar US (USD)</span>
+                <span style="color:#00E013;">$ 1,250.00</span>
+              </div>
+              <div style="background:#000;color:#fff;padding:14px 18px;border-radius:16px;display:flex;justify-content:space-between;font-weight:800;">
+                <span>🇳🇬 Naira Nigéria (NGN)</span>
+                <span style="color:#00E013;">₦ 425,000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Étapes pour démarrer en 3 minutes -->
+          <div class="cb-card cb-gray cb-span-4" style="min-height:260px;">
+            <div style="font-family:var(--font-display);font-size:48px;font-weight:800;color:#00B810;">01</div>
+            <div>
+              <h4 style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;">TÉLÉCHARGEZ &amp; VÉRIFIEZ VOTRE KYC</h4>
+              <p style="font-size:14.5px;color:#4B5563;line-height:1.5;">Validez votre identité en 2 minutes avec votre carte CIP, CNI ou Passeport.</p>
+            </div>
+          </div>
+
+          <div class="cb-card cb-gray cb-span-4" style="min-height:260px;">
+            <div style="font-family:var(--font-display);font-size:48px;font-weight:800;color:#00B810;">02</div>
+            <div>
+              <h4 style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;">RECHARGEZ PAR MOBILE MONEY</h4>
+              <p style="font-size:14.5px;color:#4B5563;line-height:1.5;">Dépôt instantané à 0 F via MTN MoMo, Moov Money, Celtiis Cash ou Wave.</p>
+            </div>
+          </div>
+
+          <div class="cb-card cb-gray cb-span-4" style="min-height:260px;">
+            <div style="font-family:var(--font-display);font-size:48px;font-weight:800;color:#00B810;">03</div>
+            <div>
+              <h4 style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;">CRÉEZ VOTRE CARTE USD</h4>
+              <p style="font-size:14.5px;color:#4B5563;line-height:1.5;">Payez immédiatement sur Amazon, Alibaba, Netflix, Facebook &amp; TikTok Ads.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 4 : FAQ SUR FOND NOIR -->
+    <section class="block-dark">
+      <div class="block-container">
+        <span class="section-tag-neon">03 / QUESTIONS FRÉQUENTES</span>
+        <h2 class="display-section" style="margin-bottom:48px;">
+          ZÉRO JARGON.<br/>TOUTES LES RÉPONSES.
+        </h2>
+
+        <div>
+          <div class="cash-faq-item open">
+            <button class="cash-faq-q" onclick="toggleCashFaq(this)">
+              <span>Combien coûte la création et l'entretien d'une carte virtuelle USD ?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="cash-faq-a">
+              La création d'une carte virtuelle VISA ou Mastercard coûte <strong>3 000 FCFA</strong> (paiement unique) avec un premier rechargement minimum de <strong>10 $ USD</strong> crédités sur votre carte. Il y a <strong>0 FCFA de frais de recharge</strong> et <strong>0 FCFA de frais d'entretien mensuel</strong>.
+            </div>
+          </div>
+
+          <div class="cash-faq-item">
+            <button class="cash-faq-q" onclick="toggleCashFaq(this)">
+              <span>Sur quels sites puis-je payer avec ma carte Cashless ?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="cash-faq-a">
+              Partout où VISA et Mastercard USD sont acceptés : <strong>Facebook Ads, TikTok Ads, Google Ads, Amazon, Alibaba, AliExpress, Shein, Netflix, Spotify, Apple, ChatGPT, Hostinger, Namecheap, Uber</strong> et des milliers d'autres marchands.
+            </div>
+          </div>
+
+          <div class="cash-faq-item">
+            <button class="cash-faq-q" onclick="toggleCashFaq(this)">
+              <span>Puis-je retirer le solde de ma carte vers MTN MoMo ou Moov Money ?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="cash-faq-a">
+              Oui ! Vous pouvez décharger votre carte virtuelle USD vers votre portefeuille principal Cashless puis retirer vos fonds vers votre compte Mobile Money local en quelques secondes.
+            </div>
+          </div>
+
+          <div class="cash-faq-item">
+            <button class="cash-faq-q" onclick="toggleCashFaq(this)">
+              <span>Comment mes fonds sont-ils sécurisés ?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="cash-faq-a">
+              La monnaie électronique est émise par <strong>ID MONEY SA</strong>. Toutes vos opérations sont protégées par un chiffrement militaire 256-bit, l'authentification biométrique 2FA et la possibilité de geler vos cartes en 1 clic.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================================
+       PILIER 2 : CENTRE DE TUTOS ILLUSTRÉ (STRIPE/REVOLUT DOCS x CASH APP)
+       ======================================================================= -->
+  <section id="view-tutos" class="view-section">
+    <div class="tuto-page-wrap">
+      <div class="tuto-header-banner">
+        <div class="block-container" style="text-align:center;">
+          <span class="section-tag-neon">DOCUMENTATION ILLUSTRÉE PAS-À-PAS</span>
+          <h1 class="display-section" style="margin-bottom:10px;">
+            COMMENT POUVONS-NOUS VOUS AIDER ?
+          </h1>
+          <p style="color:#A1A8A3;font-size:17px;">
+            Chaque action expliquée en 3 étapes visuelles avec captures d'écran annotées.
+          </p>
+
+          <div class="cash-search-bar">
+            <svg style="position:absolute;left:22px;top:50%;transform:translateY(-50%);color:#00E013;" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="text"
+              class="cash-search-input"
+              placeholder="Tapez un mot-clé : carte USD, MTN MoMo, frais de rejet, KYC, plafond..."
+              oninput="searchTutos(this.value)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="tuto-grid-layout">
+        <!-- Sidebar 5 catégories -->
+        <aside class="tuto-sidebar">
+          <div class="tuto-cat-group">
+            <div class="tuto-cat-label">1. Premiers pas</div>
+            <button class="tuto-nav-btn" data-tuto="kyc-compte" onclick="loadTutorial('kyc-compte')">
+              <span>Créer son compte &amp; KYC</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="tuto-cat-group">
+            <div class="tuto-cat-label">2. Recharges &amp; Retraits</div>
+            <button class="tuto-nav-btn" data-tuto="recharge-momo" onclick="loadTutorial('recharge-momo')">
+              <span>Dépôt MTN MoMo / Moov</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="tuto-cat-group">
+            <div class="tuto-cat-label">3. Cartes Virtuelles</div>
+            <button class="tuto-nav-btn active" data-tuto="carte-usd" onclick="loadTutorial('carte-usd')">
+              <span>Carte USD &amp; Frais de rejet</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="tuto-cat-group">
+            <div class="tuto-cat-label">4. Transferts &amp; Devises</div>
+            <button class="tuto-nav-btn" data-tuto="transferts-devises" onclick="loadTutorial('transferts-devises')">
+              <span>Envoi 0 F &amp; Change Naira/USD</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="tuto-cat-group" style="margin-bottom:0;">
+            <div class="tuto-cat-label">5. Sécurité &amp; Limites</div>
+            <button class="tuto-nav-btn" data-tuto="securite-plafonds" onclick="loadTutorial('securite-plafonds')">
+              <span>Plafonds &amp; Perte téléphone</span>
+              <span>→</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- Contenu du tutoriel injecté par app.js -->
+        <div class="tuto-main-panel" id="tuto-content-target"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       PILIER 3 : BLOG "CASH'ASTUCES" (ACQUISITION SEO & MÉDIA)
+       ======================================================================= -->
+  <section id="view-blog" class="view-section">
+    <div class="blog-page-wrap">
+      <div class="block-container" id="blog-list-container">
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:700;background:#000;color:#00E013;padding:6px 14px;border-radius:99px;">
+          MÉDIA &amp; GUIDES SEO • CASH'ASTUCES
+        </span>
+        <h1 class="display-section" style="margin-top:16px;">
+          CASH'ASTUCES.
+        </h1>
+        <p style="font-size:18px;color:#4B5563;max-width:660px;">
+          Guides pratiques pour payer en ligne depuis l'Afrique, éducation financière en FCFA et nouveautés produit.
+        </p>
+
+        <!-- Article À LA UNE -->
+        <div class="blog-featured-banner">
+          <div>
+            <span style="background:#00E013;color:#000;font-weight:900;font-size:11.5px;padding:5px 12px;border-radius:99px;">
+              🔥 À LA UNE • GUIDE PRATIQUE SEO
+            </span>
+            <h2 style="font-family:var(--font-display);font-size:clamp(26px,3.2vw,42px);font-weight:800;line-height:1.08;margin:18px 0 14px;">
+              COMMENT PAYER SES PUBS FACEBOOK &amp; TIKTOK DEPUIS LE BÉNIN ET LA CÔTE D'IVOIRE SANS REJET
+            </h2>
+            <p style="color:#A1A8A3;font-size:16px;line-height:1.6;margin-bottom:26px;">
+              Temps de lecture : 4 min • Découvrez comment configurer une carte virtuelle USD Cashless dédiée au média buying et éviter les blocages de compte publicitaire.
+            </p>
+            <button class="btn-neon" style="padding:15px 28px;font-size:15px;" onclick="openBlogArticle('meta-ads')">
+              Lire le guide complet →
+            </button>
+          </div>
+
+          <div style="background:#121614;border:1px solid rgba(0,224,19,0.3);border-radius:26px;padding:28px;">
+            <div style="font-family:var(--font-mono);font-size:12px;color:#00E013;margin-bottom:12px;">SOMMAIRE RAPIDE</div>
+            <div style="padding:12px 0;border-bottom:1px solid #222;font-weight:700;font-size:14px;">01. Pourquoi les cartes classiques échouent sur Meta</div>
+            <div style="padding:12px 0;border-bottom:1px solid #222;font-weight:700;font-size:14px;">02. Créer une carte VISA USD dédiée en 2 min</div>
+            <div style="padding:12px 0;font-weight:700;font-size:14px;">03. Les 3 règles d'or contre les frais de rejet</div>
+          </div>
+        </div>
+
+        <!-- Filtres des 3 rubriques -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;">
+          <button class="blog-filter-btn" onclick="filterBlogCards('all', this)" style="background:#000;color:#00E013;border:2px solid #000;padding:10px 20px;border-radius:99px;font-weight:800;cursor:pointer;">Tous les articles</button>
+          <button class="blog-filter-btn" onclick="filterBlogCards('Guides Pratiques', this)" style="background:transparent;color:#000;border:2px solid #000;padding:10px 20px;border-radius:99px;font-weight:800;cursor:pointer;">🛠️ Guides Pratiques</button>
+          <button class="blog-filter-btn" onclick="filterBlogCards('Éducation Financière', this)" style="background:transparent;color:#000;border:2px solid #000;padding:10px 20px;border-radius:99px;font-weight:800;cursor:pointer;">📈 Éducation Financière</button>
+          <button class="blog-filter-btn" onclick="filterBlogCards('Nouveautés', this)" style="background:transparent;color:#000;border:2px solid #000;padding:10px 20px;border-radius:99px;font-weight:800;cursor:pointer;">🚀 Nouveautés Cashless</button>
+        </div>
+
+        <!-- Grille des articles -->
+        <div class="blog-cards-grid">
+          <article class="cash-blog-card" data-cat="Guides Pratiques" onclick="openBlogArticle('meta-ads')">
+            <div style="background:#00E013;padding:28px;border-bottom:2px solid #000;">
+              <span style="background:#000;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:99px;">GUIDES PRATIQUES</span>
+              <div style="font-family:var(--font-display);font-size:28px;font-weight:800;margin-top:18px;">META &amp; TIKTOK ADS</div>
+            </div>
+            <div style="padding:26px;">
+              <div style="font-size:12px;font-weight:700;color:#6B7280;margin-bottom:8px;">⏱️ 4 min de lecture</div>
+              <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;line-height:1.2;margin-bottom:12px;">
+                Comment payer ses publicités Facebook/TikTok depuis le Bénin
+              </h3>
+              <p style="font-size:14px;color:#4B5563;line-height:1.55;">
+                Reliez votre carte virtuelle USD Cashless à Meta Business Suite en 2 minutes chrono.
+              </p>
+            </div>
+          </article>
+
+          <article class="cash-blog-card" data-cat="Guides Pratiques" onclick="openBlogArticle('meta-ads')">
+            <div style="background:#000;color:#fff;padding:28px;border-bottom:2px solid #000;">
+              <span style="background:#00E013;color:#000;font-size:11px;font-weight:800;padding:4px 10px;border-radius:99px;">GUIDES PRATIQUES</span>
+              <div style="font-family:var(--font-display);font-size:28px;font-weight:800;margin-top:18px;color:#00E013;">ALIBABA &amp; SHEIN</div>
+            </div>
+            <div style="padding:26px;">
+              <div style="font-size:12px;font-weight:700;color:#6B7280;margin-bottom:8px;">⏱️ 5 min de lecture</div>
+              <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;line-height:1.2;margin-bottom:12px;">
+                Commander sur Alibaba, Amazon et Shein avec une carte virtuelle
+              </h3>
+              <p style="font-size:14px;color:#4B5563;line-height:1.55;">
+                Économisez sur les frais de change en payant directement en USD vos fournisseurs internationaux.
+              </p>
+            </div>
+          </article>
+
+          <article class="cash-blog-card" data-cat="Éducation Financière" onclick="openBlogArticle('meta-ads')">
+            <div style="background:#F0F2F0;padding:28px;border-bottom:2px solid #000;">
+              <span style="background:#000;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:99px;">ÉDUCATION FINANCIÈRE</span>
+              <div style="font-family:var(--font-display);font-size:28px;font-weight:800;margin-top:18px;">ÉPARGNE FCFA</div>
+            </div>
+            <div style="padding:26px;">
+              <div style="font-size:12px;font-weight:700;color:#6B7280;margin-bottom:8px;">⏱️ 4 min de lecture</div>
+              <h3 style="font-family:var(--font-display);font-size:20px;font-weight:800;line-height:1.2;margin-bottom:12px;">
+                5 méthodes pour épargner efficacement avec un salaire en FCFA
+              </h3>
+              <p style="font-size:14px;color:#4B5563;line-height:1.55;">
+                Automatisez votre budget et suivez chaque franc dépensé depuis l'application Cashless.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Vue Lecture d'Article avec Sommaire + CTA in-article -->
+      <div class="block-container" id="blog-reader-container" style="display:none;padding-bottom:96px;">
+        <button class="btn-black" style="padding:10px 20px;font-size:13px;margin-bottom:32px;" onclick="closeBlogArticle()">
+          ← Retour aux articles Cash'astuces
+        </button>
+
+        <div style="max-width:820px;background:#F7F8F7;border:2px solid #000;border-radius:32px;padding:48px;box-shadow:0 14px 0 #000;">
+          <span style="background:#00E013;color:#000;font-weight:900;font-size:11.5px;padding:5px 12px;border-radius:99px;">
+            GUIDE PRATIQUE • ⏱️ 4 MIN DE LECTURE
+          </span>
+          <h1 style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.08;margin:16px 0 24px;">
+            Comment payer ses publicités Facebook &amp; TikTok Ads depuis le Bénin sans blocage bancaire
+          </h1>
+
+          <div style="background:#fff;border:2px solid #000;border-radius:20px;padding:20px;margin-bottom:28px;">
+            <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;margin-bottom:8px;">SOMMAIRE CLIQUABLE</div>
+            <a href="#art-s1" style="display:block;font-weight:700;padding:4px 0;color:#008F0C;">1. Pourquoi opter pour une carte virtuelle VISA/Mastercard en USD</a>
+            <a href="#art-s2" style="display:block;font-weight:700;padding:4px 0;">2. Créer et recharger sa carte par MTN MoMo ou Moov Money</a>
+            <a href="#art-s3" style="display:block;font-weight:700;padding:4px 0;">3. Éviter les frais de rejet automatique</a>
+          </div>
+
+          <h3 id="art-s1" style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:10px;">
+            1. Pourquoi opter pour une carte virtuelle VISA/Mastercard en USD
+          </h3>
+          <p style="color:#374151;line-height:1.7;margin-bottom:24px;">
+            Les régies publicitaires comme Meta Ads et TikTok Ads facturent nativement en Dollars (USD). Avec Cashless Africa, vous créez en 2 minutes une carte virtuelle USD rechargeable en FCFA sans frais d'entretien mensuel.
+          </p>
+
+          <!-- CTA intégré au milieu de l'article -->
+          <div style="background:#000;color:#fff;border-radius:24px;padding:28px;margin:28px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+            <div>
+              <div style="color:#00E013;font-family:var(--font-mono);font-size:11px;font-weight:700;">PRÊT À PAYER EN LIGNE SANS LIMITE ?</div>
+              <div style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-top:4px;">Téléchargez Cashless Africa maintenant</div>
+            </div>
+            <button class="btn-neon" onclick="openQrModal()">Obtenir ma carte USD →</button>
+          </div>
+
+          <h3 id="art-s2" style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:10px;">
+            2. Trois règles d'or pour éviter tout frais de rejet
+          </h3>
+          <p style="color:#374151;line-height:1.7;">
+            Conservez toujours une marge de 2 $ sur votre carte dédiée aux publicités, ou gelez votre carte en 1 clic dans l'application dès que vos campagnes sont mises en pause.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       FOOTER & ÉCOSYSTÈME PRODUIT (Cashless, Beincoo, Flo, Sckaler)
+       ========================================================================= -->
+  <footer class="cash-footer">
+    <div class="block-container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+        <div>
+          <span class="section-tag-neon">ÉCOSYSTÈME PRODUIT</span>
+          <h3 style="font-family:var(--font-display);font-size:32px;font-weight:800;text-transform:uppercase;">
+            LA SUITE FINTECH DE RÉFÉRENCE.
+          </h3>
+        </div>
+        <div style="font-size:13px;color:#9CA3AF;">
+          📍 Fidjrossè, Oudouali (Route des Pêches), Cotonou, Bénin
+        </div>
+      </div>
+
+      <div class="eco-cards-row">
+        <div class="eco-item" style="border-color:#00E013;">
+          <div style="color:#00E013;font-family:var(--font-mono);font-size:11px;font-weight:700;">PARTICULIERS &amp; DIASPORA</div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;margin:6px 0;">Cashless Africa</div>
+          <p style="font-size:13px;color:#9CA3AF;">Cartes virtuelles USD, portefeuille multi-devises et transferts à 0 F.</p>
+        </div>
+
+        <a href="https://beincoo.com/" target="_blank" rel="noopener" class="eco-item">
+          <div style="color:#9CA3AF;font-family:var(--font-mono);font-size:11px;font-weight:700;">RESTAURANTS &amp; POS</div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;margin:6px 0;">Beincoo ↗</div>
+          <p style="font-size:13px;color:#9CA3AF;">Gestion complète de stocks, ventes, équipes et facturation digitale.</p>
+        </a>
+
+        <a href="https://www.cashlessflo.com/" target="_blank" rel="noopener" class="eco-item">
+          <div style="color:#9CA3AF;font-family:var(--font-mono);font-size:11px;font-weight:700;">CARTES ENTREPRISE</div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;margin:6px 0;">Cashless Flo ↗</div>
+          <p style="font-size:13px;color:#9CA3AF;">Centralisez les dépenses professionnelles et avantages employés.</p>
+        </a>
+
+        <a href="https://sckaler.cloud/" target="_blank" rel="noopener" class="eco-item">
+          <div style="color:#9CA3AF;font-family:var(--font-mono);font-size:11px;font-weight:700;">API MARCHANDS</div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;margin:6px 0;">Sckaler ↗</div>
+          <p style="font-size:13px;color:#9CA3AF;">Agrégateur Mobile Money &amp; API d'encaissement en Afrique.</p>
+        </a>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.12);font-size:13px;color:#8E9890;">
+        <div>© 2026 Cashless Africa. Tous droits réservés. Monnaie émise par <strong>ID MONEY SA</strong>.</div>
+        <div style="display:flex;gap:20px;">
+          <a href="https://cashless.africa/fr/legal/terms-conditions" target="_blank" rel="noopener">Conditions Générales</a>
+          <a href="https://cashless.africa/fr/legal/privacy-policy" target="_blank" rel="noopener">Politique de Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL QR CODE CASH APP STYLE -->
+  <div class="cash-modal" id="qr-modal" onclick="if(event.target===this)closeQrModal()">
+    <div class="cash-modal-box">
+      <button onclick="closeQrModal()" style="position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:#000;color:#fff;border:none;font-weight:900;cursor:pointer;">✕</button>
+      <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;margin-bottom:8px;">SCANNEZ AVEC VOTRE TÉLÉPHONE</div>
+      <h3 style="font-family:var(--font-display);font-size:30px;font-weight:800;line-height:1.05;margin-bottom:20px;">
+        PASSEZ À CASHLESS EN 2 MINUTES.
+      </h3>
+
+      <div style="width:190px;height:190px;background:#fff;border:4px solid #000;border-radius:26px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 120 120" width="150" height="150" fill="#000">
+          <rect x="8" y="8" width="32" height="32" rx="4" fill="none" stroke="#000" stroke-width="7"/>
+          <rect x="16" y="16" width="16" height="16"/>
+          <rect x="80" y="8" width="32" height="32" rx="4" fill="none" stroke="#000" stroke-width="7"/>
+          <rect x="88" y="16" width="16" height="16"/>
+          <rect x="8" y="80" width="32" height="32" rx="4" fill="none" stroke="#000" stroke-width="7"/>
+          <rect x="16" y="88" width="16" height="16"/>
+          <rect x="48" y="14" width="10" height="18"/><rect x="44" y="46" width="32" height="28" rx="6" fill="#00D632"/>
+          <rect x="14" y="50" width="18" height="10"/><rect x="84" y="50" width="22" height="14"/>
+          <rect x="50" y="84" width="24" height="12"/><rect x="84" y="84" width="26" height="24"/>
+        </svg>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <a href="https://apps.apple.com/fr/app/cashless-africa/id6758164587" target="_blank" rel="noopener" class="btn-black" style="flex:1;justify-content:center;padding:14px;">App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.cashlessapp.africa" target="_blank" rel="noopener" class="btn-black" style="flex:1;justify-content:center;padding:14px;">Google Play</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
